@@ -42,12 +42,12 @@
       "condition": {"value": "lightgrey", "test": "!datum['value']"},
       "field": "value",
       "type": "quantitative",
-      "legend": {"title": "", "format": ",d"},
+      "legend": {"title": "", "format": ".2f"},
       "scale": {"type": "log", "scheme": "greys", "reverse": false}
     },
     "tooltip": [
       {"field": "Country", "title": "Country"},
-      {"field": "value", "title": "", "format": "d"}
+      {"field": "value", "title": "", "format": ".2f"}
     ]
   },
   "config": {}
