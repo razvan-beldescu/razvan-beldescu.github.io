@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A map of UK population by ITL1 (formerly NUT1) region. Using ONS 2019 data.",
+  "title": {
+    "text": "UK Per Capita GHG Emissions",
+    "subtitle": ["tCO2e", "Source: DESNZ"],
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": "lighter",
+    "anchor": "middle"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/datasets/advanced/uk_itl1.geojson",
+    "format": {"property": "features"}
+  },
+  "width": 300,
+  "height": 400,
+  "transform": [
+    {
+      "lookup": "properties.ITL121CD",
+      "from": {
+        "key": "ITL code",
+        "fields": ["Region", "value"],
+        "data": {
+          "url": "https://raw.githubusercontent.com/razvan-beldescu/razvan-beldescu.github.io/main/uk_ghg.csv"
+        }
+      }
+    }
+  ],
+  "projection": {"type": "mercator"},
+  "mark": "geoshape",
+  "encoding": {
+    "color": {
+      "field": "value",
+      "type": "quantitative",
+      "scale": {"scheme": "warmgreys"},
+      "legend": {"title": ""}
+    },
+    "tooltip": [
+      {"field": "properties.ITL121NM", "title": "Region"},
+      {"field": "value", "title": "tco2e/capita", "format": ","}
+    ]
+  },
+  "config": {}
+}
