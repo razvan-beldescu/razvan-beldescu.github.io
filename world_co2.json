@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Global CO2 emissions",
+    "subtitle": [
+      "CO2 emissions: per capita metric tonnes",
+      "Source: World Bank 2021",
+      ""
+    ],
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleFontWeight": "lighter",
+    "anchor": "middle"
+  },
+  "description": "2021 World Bank data, CO2 emissions per capita in metric tonnes. Grey countries have missing data.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/datasets/advanced/map_world.geojson",
+    "format": {"property": "features"}
+  },
+  "width": 600,
+  "height": 330,
+  "transform": [
+    {
+      "lookup": "properties.ISO3",
+      "from": {
+        "key": "ISO3",
+        "fields": ["Country", "value"],
+        "data": {
+          "url": "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/4/map_data/world/world_co2_emissions_wb.csv"
+        }
+      }
+    }
+  ],
+  "projection": {
+    "type": "naturalEarth1",
+    "scale": 125,
+    "translate": [285, 180]
+  },
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.3},
+  "encoding": {
+    "color": {
+      "condition": {"value": "lightgrey", "test": "!datum['value']"},
+      "field": "value",
+      "type": "quantitative",
+      "legend": {"title": "", "format": ",d"},
+      "scale": {"type": "log", "scheme": "greys", "reverse": false}
+    },
+    "tooltip": [
+      {"field": "Country", "title": "Country"},
+      {"field": "value", "title": "", "format": "d"}
+    ]
+  },
+  "config": {}
+}
