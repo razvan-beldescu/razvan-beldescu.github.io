@@ -1,0 +1,15 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Heat Networks Deployment"},
+  "width": 400,
+  "height": 300,
+  "data": {
+    "url": "https://raw.githubusercontent.com/razvan-beldescu/razvan-beldescu.github.io/main/deployment1.csv"
+  },
+  "mark": {"type": "line", "color": "rebeccapurple"},
+  "encoding": {
+    "x": {"field": "Year", "type": "temporal"},
+    "y": {"field": "Deployment", "type": "quantitative", "title": null}
+  },
+  "config": {}
+}
